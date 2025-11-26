@@ -7,6 +7,7 @@ Practical guide for business consultants to run top-down strategy with bottom-up
 - Use `02_data_pipeline_and_feature_engineering.md` to brief clients on data prep and why we avoid Excel-heavy workflows.
 - Refer to `03_algorithm_menu.md` to pick the right analytical tool without jargon.
 - Follow `04_dashboard_storytelling.md` to structure the executive dashboard and bottom lines per chart.
+- Check `05_tech_stack_and_pipeline.md` for the tool catalog and end-to-end steps from Excel to dashboard.
 
 ## What You Can Promise
 - Executive narrative first: Situation → Complication → Question → Answer.
