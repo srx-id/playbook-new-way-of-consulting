@@ -1,35 +1,34 @@
-# Algorithm Menu (Choose Without Jargon)
+# Algorithm Menu (Plain Words)
 
-## Outside-In Benchmark (Deep Learning First)
-- **What it is:** Use pre-trained models to scan public text/images and cluster peers, risks, or technology moves.  
-- **When to use:** Week 1 to anchor the “where do we stand” slide before internal data is clean.  
-- **Output:** Peer benchmark heatmap and a shortlist of practices to test internally.
+## Outside-In Benchmark
+- **What:** Use ready-made AI models to scan public text/images to spot peers and practices.  
+- **Why:** Gives a fast “where we stand” view before internal data is perfect.  
+- **Output:** Peer map and a shortlist of ideas to test internally.
 
-## Interpretable Baseline (Start Here for Drivers)
-- **Models:** Regularized linear or logistic (Ridge/Lasso/ElasticNet).  
-- **Use case:** Show direction and approximate effect size (e.g., which product mix lifts margin, which partner traits cut failure rate).  
-- **Output:** Ranked drivers with signs (↑/↓) and error in business units.
+## Simple, Explainable Drivers
+- **What:** Straightforward regression that shows which factors push results up or down.  
+- **Why:** Easy to explain; numbers stay in business units (percentage points, minutes, currency).  
+- **Output:** Top drivers with direction (↑/↓) and estimated effect size.
 
-## Non-Linear Accuracy Boost
-- **Models:** Gradient Boosting / Random Forest.  
-- **Use case:** Capture interactions (seasonality by region, night trips in risky areas).  
-- **Guardrails:** Limited feature set, permutation importance, and partial dependence plots so we keep explainability.  
-- **Output:** Better predictions, stable top drivers, what-if curves for key levers.
+## Extra Accuracy When Needed
+- **What:** Tree-based models that capture interactions (e.g., seasonality by region).  
+- **Why:** Better predictions while we keep explanations via a short driver list and “what-if” curves.  
+- **Output:** More accurate forecasts plus stable driver ranking.
 
-## Anomaly & Risk Detection
-- **Models:** Isolation Forest + simple rules.  
-- **Use case:** Flag journeys, branches, partners, assets, or customers that look unlike their peers; blend rules for clarity.  
-- **Output:** Risk scores with action bands (monitor, spot-check, investigate).
+## Spotting Outliers and Risky Cases
+- **What:** Anomaly detector plus a few clear rules.  
+- **Why:** Flags journeys/branches/partners/assets/customers that behave unlike peers, with reasons.  
+- **Output:** Risk bands (monitor, spot-check, investigate) and a short “why flagged” note.
 
-## Impact of Interventions
-- **Methods:** Difference-in-Differences, synthetic control, or double ML.  
-- **Use case:** Prove uplift from any program vs control (pilot branches vs holdout, new playbook vs old).  
-- **Output:** Uplift estimate with confidence band and a plain-language verdict (“evidence of improvement” vs “not visible yet”).
+## Measuring Program Impact
+- **What:** Before/after plus control-vs-pilot comparison methods.  
+- **Why:** Answers “did the change help?” without heavy math in the readout.  
+- **Output:** Uplift estimate with confidence and a plain verdict (“visible improvement” vs “not yet visible”).
 
-## Quick Selection Cheatsheet
-- Need a fast story before data is ready → Outside-in benchmark.  
-- Need trusted drivers and simple math → Interpretable baseline.  
-- Need extra accuracy for forecasts or targeting → Non-linear boost.  
-- Need to find bad actors or weird trips → Anomaly + rules.  
-- Need to prove program impact → DiD / synthetic control.  
-- If daily/high-frequency data arrives → Consider sequence models later; not required for monthly data.
+## Quick Selection Guide
+- Need a story before internal data is ready → Outside-in benchmark.  
+- Need trusted drivers in plain math → Simple, explainable drivers.  
+- Need tighter forecasts/targeting → Extra accuracy.  
+- Need to catch bad actors/weird trips → Outlier and risk detection.  
+- Need to prove a program worked → Impact measurement.  
+- Have high-frequency data later → Consider sequence/time-series models; not needed for monthly data.
