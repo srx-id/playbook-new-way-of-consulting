@@ -42,6 +42,16 @@ Use this as the catalog and recipe—consultants can point to the tool/step with
 - **If Python is not installed:** Ask tech team for a pre-made `.venv` folder with `pandas` and `openpyxl`, or install once with `pip install pandas openpyxl`. No admin rights needed if you use a local venv.  
 - **Where to run:** PowerShell or Command Prompt in the project folder (same level as `data/`).
 
+### Installing Python on Windows (Lightweight)
+- Easiest: Install from the Microsoft Store (“Python 3.12”). This auto-adds `python` to PATH.  
+- If Store is blocked: Download the “Windows embeddable package” (ZIP) from python.org, extract to a folder you control (no admin), and call it with `.\python.exe`.  
+- Create a local venv in the project folder (no admin):
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install pandas openpyxl
+```
+
 ### 1) Quick profile of the raw Excel
 ```bash
 python - <<'PY'
