@@ -1,37 +1,37 @@
-# New Way of Consulting (Top-Down + ML Bottom-Up)
+# New Way of Consulting (Top-Down + Bottom-Up)
 
-Plain-language guide to secure the right data upfront so the analysis is fast, defensible, and dashboard-ready. No week-by-week promises—just what to ask for and what “good enough” looks like.
+Plain guide for non-technical consultants: what data to ask for, what “good enough” looks like, and how to ask without blaming data.
 
-## Ask for These Core Tables
-- **Performance by period:** One row per entity per period (site/branch/plant/vendor/vehicle, by day or month). Include the north-star metric and supporting metrics (e.g., output volume, success/failure counts, cost, revenue).
-- **Operational events:** Time-stamped events that create the performance (e.g., deliveries, journeys, work orders). Must have IDs, start/end time, location if relevant, and status/outcome.
-- **Context/master data:** Static attributes for entities (region, size, capacity, equipment, contract type, partner tier). Keep code lists consistent with the performance table.
-- **Intervention markers:** Flags for pilots/rollouts/changes (on/off dates) so we can estimate impact.
-- **Reference targets:** Business targets or thresholds per metric to anchor “so what”.
+## What to Ask For
+- **Performance by period:** Simple table (spreadsheet is fine) with one row per site/branch/partner per day or month. Include the headline result and supporting numbers (volume, success/fail counts, cost, revenue).
+- **Activities that create the result:** Rows for each delivery/journey/order/work order with IDs, start/end time, location (if relevant), and outcome/status.
+- **Reference info:** A short list of attributes for each site/partner/vehicle (region, size, capacity band, contract type). Use the same IDs as above.
+- **Change markers:** On/off dates for pilots, rollouts, or policy changes so we can see before/after impact.
+- **Targets:** The business targets or thresholds you already use, so “so what” is clear.
 
-## Minimum Viable Specs (Borrowed from Past Work)
-- **Operations performance (analogous to production/yield work):**
-  - Periodic table with metric (e.g., yield %, throughput, quality rate), volume, and cost.
-  - Attributes: site/plant ID, region, capacity band, process flags.
-  - Intervention flag: pilot vs control, before/after change date.
-- **Transport/security (analogous to journey risk work):**
-  - Event table: journey ID, vehicle ID, start/end timestamp, coordinates or zones, distance, duration, idle time, speed stats, status codes.
-  - Optional enrich: stop locations, route geometry or snapped polyline, anomaly notes.
-  - Attributes: vehicle type, partner, route class, risk zones (green/red) if available.
-- **Procurement/partner performance (analogous to vendor scorecards):**
-  - Order/transaction table: order ID, partner ID, timestamps, SLA status (on-time/late/fail), cost/price, location, product/service type.
-  - Partner master: segment/tier, region, contract terms, capacity, specialties.
-  - Outcomes: success/failure counts, delays, cancellations, rework flags.
+## “Good Enough” Examples (Taken from past projects)
+- **Operations performance:**  
+  - Table by period with result (e.g., yield/quality/service level), volume, and cost.  
+  - Attributes for each site: region, size, capacity band, a few process flags.  
+  - Simple flag for sites in a pilot versus control, with start date.
+- **Transport/security:**  
+  - Trip table: journey ID, vehicle ID, start/end time, distance, duration, idle minutes, basic speed stats, status code.  
+  - Optional: stop locations or zones; a note if a trip is clearly unusual.  
+  - Vehicle attributes: type, partner, route class; zone labels if you already have them.
+- **Procurement/partner performance:**  
+  - Order table: order ID, partner ID, timestamps, on-time/late/fail, cost/price, location, product/service type.  
+  - Partner list: tier/segment, region, contract terms, capacity, specialties.  
+  - Outcomes: counts of delays, cancellations, rework.
 
-## Data Quality Guardrails (Client-Friendly)
-- **Coverage:** Share what periods and entities are present/missing; no blame, just a map.
-- **Consistency:** One ID system per entity; provide a mapping table if systems differ.
-- **Timestamps:** Clear timezone; start/end pairs for durations.
-- **Units:** State units for distance/time/currency/volume; avoid mixed units in one column.
-- **Duplicates:** Allow us to drop exact duplicates; flag how many were removed.
-- **Missing values:** Distinguish “not applicable” vs “unknown”; keep blanks, don’t force zeros.
+## Friendly Data Checks (No Blame)
+- **Coverage:** Which periods and entities are present or missing; just share the map.  
+- **IDs:** One ID per entity; if there are two systems, give a short mapping table.  
+- **Time:** Include timezone; start and end for anything with a duration.  
+- **Units:** Say the unit (currency, minutes, km, pieces) and keep it consistent per column.  
+- **Duplicates:** OK to remove exact duplicates; note how many.  
+- **Missing:** Leave blank if unknown; avoid guessing zero.
 
-## How to Ask (Without Blaming Data)
-- Position the request as enabling faster insight: “With these five columns we can deliver the exec story and the driver ranking.”
-- Offer the template: a tidy CSV/Parquet example with IDs, timestamps, outcome/status, and key attributes.
-- Commit to return a profiling note first (what’s in/out) before any modeling.
+## How to Ask
+- “With these few columns we can build the executive story and the supporting dashboard quickly.”  
+- Share a simple example table with the columns above instead of technical terms.  
+- Promise a short “what’s in/out” note before any modeling or coding.  
