@@ -35,3 +35,31 @@ How consultants can use AI assistants (e.g., Claude, ChatGPT/Codex, Gemini) end-
 - “Suggest a simple regression and an anomaly check in scikit-learn using these columns; code under 40 lines.”  
 
 Use GenAI to speed up drafting, prompts, and small code snippets; keep analysis and numbers grounded in our data and codebase.
+
+## One-Shot Prompt (Copy/Paste) to Build From Excel → Dashboard
+Paste this as one block to Claude/ChatGPT/Gemini, then add your column names and file name where noted.
+```
+You are my coding copilot. Use the following stack only: pandas, openpyxl (read Excel), scikit-learn (regression, tree models, isolation forest, DBSCAN/KMeans), streamlit, plotly, altair. Optional for geo: shapely/h3 if coordinates exist. Data lives in ./data/raw and outputs go to ./data/processed or ./data/outputs.
+
+Task: Take the Excel file <REPLACE_WITH_FILENAME.xlsx> and produce:
+1) A profiling summary (rows, columns, null counts, basic describe) saved to data/outputs/profile_summary.csv.
+2) A cleaned CSV in data/processed/clean.csv with: renamed columns to business-friendly snake_case, trimmed strings, parsed datetimes, deduped rows, blanks kept as NaN (no guessing zeros).
+3) A tidy performance table data/processed/performance_tidy.csv with one row per entity per period. Columns: entity_id (replace with my ID column), year, month, metric_value (replace with my metric column).
+4) A feature table data/processed/performance_features.csv adding simple features: month, quarter, is_q4 flag, basic ratios/deltas if applicable, and a lag of the metric.
+5) A lightweight driver model (ElasticNet or Ridge) to rank drivers; save coefficients/feature importances to data/outputs/driver_ranking.csv.
+6) A basic accuracy boost model (RandomForestRegressor) and save top importances to data/outputs/driver_importance_rf.csv.
+7) An anomaly detector (IsolationForest) on the feature table; save anomalies with scores to data/outputs/anomalies.csv.
+8) A Streamlit script stub (streamlit_app.py) that shows: KPIs, driver table, anomalies table, and a few charts (Plotly/Altair) with one-line “so what” captions.
+
+Assumptions:
+- My date column is called <REPLACE_WITH_DATE_COL>.
+- My entity column is called <REPLACE_WITH_ENTITY_COL>.
+- My main metric column is called <REPLACE_WITH_METRIC_COL>.
+- Keep code concise and runnable on Windows with a local venv (no admin).
+- Write all file paths relative to the repo root.
+
+Deliver:
+- Python code blocks for steps 1-7.
+- A Streamlit code block for step 8.
+- Short instructions to run: profiling/cleaning, feature creation, models, then `streamlit run streamlit_app.py`.
+```
