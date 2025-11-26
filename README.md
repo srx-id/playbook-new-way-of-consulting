@@ -8,6 +8,7 @@ Practical guide for business consultants to run top-down strategy with bottom-up
 - Refer to [03_algorithm_menu.md](03_algorithm_menu.md) to pick the right analytical tool without jargon.
 - Follow [04_dashboard_storytelling.md](04_dashboard_storytelling.md) to structure the executive dashboard and bottom lines per chart.
 - Check [05_tech_stack_and_pipeline.md](05_tech_stack_and_pipeline.md) for the tool catalog and end-to-end steps from Excel to dashboard.
+- See [06_using_genai.md](06_using_genai.md) for how to use AI assistants safely and effectively.
 
 ## What You Can Promise
 - Executive narrative first: Situation → Complication → Question → Answer.
