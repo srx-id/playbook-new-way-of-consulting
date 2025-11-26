@@ -38,15 +38,86 @@ Plain-language catalog of the tools already in our projects and how they fit tog
 
 Use this as the catalog and recipe—consultants can point to the tool/step without needing to code.
 
-## Excel-to-Dashboard with GenAI Assist (Prompts for Each Step)
-1) **Raw drop storage:** “Remind me how to name and store a raw Excel file for analysis; keep it one bullet line.”  
-2) **Profiling checklist:** “Given these column headers, draft 8 quick checks (coverage, dates, duplicates, obvious gaps).”  
-3) **IDs and units:** “Rewrite these column headers to be consistent IDs/units; note any unit ambiguity to confirm.”  
-4) **Tidy layout:** “Turn this wide table into one-row-per-entity-per-period instructions; keep it to 5 bullets.”  
-5) **Missing/duplicates:** “List simple rules to keep blanks as unknown, drop exact duplicates, and log counts.”  
-6) **Features:** “Suggest 10 simple features (time flags, ratios, deltas, basic lags) for this dataset; avoid jargon.”  
-7) **Sanity split:** “Explain how to split earlier vs later periods to sanity-check stability; under 5 bullets.”  
-8) **Lightweight models:** “Suggest a plain-language plan: start with explainable regression for drivers, add tree model if needed, run anomaly detection if hunting outliers; keep under 6 bullets.”  
-9) **Save outputs:** “Remind me where to save cleaned tables and model outputs (`data/processed/`, `data/outputs/`); one bullet.”  
-10) **Dashboard build:** “Draft section labels and one-line ‘so what’ captions for these metrics (I’ll paste metric/trend/target).”  
-11) **Share/iterate:** “Write a short client walk-through order: exec page first, then drill-down tabs; note we change labels/filters, not raw data.”
+## Excel-to-Dashboard with Simple Python (Copy/Paste, Windows-Friendly)
+- **If Python is not installed:** Ask tech team for a pre-made `.venv` folder with `pandas` and `openpyxl`, or install once with `pip install pandas openpyxl`. No admin rights needed if you use a local venv.  
+- **Where to run:** PowerShell or Command Prompt in the project folder (same level as `data/`).
+
+### 1) Quick profile of the raw Excel
+```bash
+python - <<'PY'
+import pandas as pd
+df = pd.read_excel("data/raw/your_file.xlsx")
+print("Rows:", len(df))
+print("Columns:", list(df.columns))
+print("\nFirst 3 rows:\n", df.head(3))
+print("\nNulls per column:\n", df.isna().sum().head())
+df.describe(include="all").to_csv("data/outputs/profile_summary.csv", index=False)
+PY
+```
+
+### 2) Clean and standardize (IDs, dates, duplicates)
+```bash
+python - <<'PY'
+import pandas as pd
+
+INPUT = "data/raw/your_file.xlsx"
+OUTPUT = "data/processed/clean.csv"
+
+col_map = {
+    # "Old Column Name": "new_name",
+    # Fill in a few key renames to keep names short and clear
+}
+
+df = pd.read_excel(INPUT)
+df = df.rename(columns=col_map)
+
+# Example: standardize an ID and a date column if present
+if "id" in df.columns:
+    df["id"] = df["id"].astype(str).str.strip()
+if "date" in df.columns:
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
+df = df.drop_duplicates()
+df.to_csv(OUTPUT, index=False)
+print(f"Saved cleaned table to {OUTPUT} with {len(df)} rows.")
+PY
+```
+
+### 3) Create a tidy performance table (one row per entity-period)
+```bash
+python - <<'PY'
+import pandas as pd
+
+df = pd.read_csv("data/processed/clean.csv")
+# Replace these column names with your own
+date_col = "date"
+entity_col = "site_id"
+value_col = "metric_value"
+
+# Extract period (month) example
+df[date_col] = pd.to_datetime(df[date_col], errors="coerce")
+df["year"] = df[date_col].dt.year
+df["month"] = df[date_col].dt.month
+
+tidy = df[[entity_col, "year", "month", value_col]].copy()
+tidy.to_csv("data/processed/performance_tidy.csv", index=False)
+print("Saved tidy performance table to data/processed/performance_tidy.csv")
+PY
+```
+
+### 4) Basic feature adds (time flags, simple ratios)
+```bash
+python - <<'PY'
+import pandas as pd
+
+df = pd.read_csv("data/processed/performance_tidy.csv")
+df["is_q4"] = df["month"].isin([10, 11, 12]).astype(int)
+df.to_csv("data/processed/performance_features.csv", index=False)
+print("Added simple features to data/processed/performance_features.csv")
+PY
+```
+
+### 5) Hand off for modeling and dashboard
+- Share the `data/processed/*.csv` files with the engineering/analytics team.  
+- They plug into Streamlit + Plotly/Altair pages already in the repos.  
+- You focus on story: confirm column names, targets, and the “so what” for each chart.
