@@ -12,3 +12,10 @@ Practical guide for business consultants to run top-down strategy with bottom-up
 - Executive narrative first: Situation → Complication → Question → Answer.
 - Bottom-up proof: clean data, tested models, and clear drivers.
 - Business-ready assets: reproducible datasets plus a Streamlit dashboard with “so what” on every chart.
+
+## Example Use Cases (All Treated the Same Way)
+- **Mill performance uplift:** Outside-in benchmark, monthly panel, driver ranking, pre/post program impact (e.g., LMM-style pilots vs control mills).
+- **Transport security/theft:** Journey-level anomaly + rules, hotspot maps, risk bands with actions; exec summary first, drill-down later.
+- **Procurement vendor performance:** Cost-to-service view, partner scorecards, on-time and failure drivers, scenario calculator for savings.
+
+These examples follow the same playbook: top-down storyline, clean processed data, interpretable baseline models, optional non-linear lift, and Streamlit delivery with bottom-line takeaways per chart.
