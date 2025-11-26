@@ -36,6 +36,28 @@ How consultants can use AI assistants (e.g., Claude, ChatGPT/Codex, Gemini) end-
 
 Use GenAI to speed up drafting, prompts, and small code snippets; keep analysis and numbers grounded in our data and codebase.
 
+## Meta-Prompt First: Have the AI Write Your Task-Specific Prompt
+1) Copy this meta-prompt and paste your business statement, data columns, and file name.  
+2) The AI will return a tailored “do-the-work” prompt you can run as-is.
+```
+I have a business statement: <PASTE BUSINESS GOAL/QUESTION>.
+I have an Excel file named <PASTE_FILENAME.xlsx> in data/raw.
+Key columns: <LIST MAIN COLUMNS AND MEANINGS>.
+
+Please write a single, ready-to-run prompt (using only pandas, openpyxl, scikit-learn, streamlit, plotly, altair, shapely/h3 if geo) that will:
+- Profile the Excel (row/col counts, nulls, describe) to data/outputs/profile_summary.csv.
+- Clean: rename to clear snake_case, trim strings, parse dates, drop exact duplicates, keep blanks as NaN, save to data/processed/clean.csv.
+- Build a tidy performance table: one row per entity-period (entity_id, year, month, metric), saved to data/processed/performance_tidy.csv.
+- Add simple features (month, quarter, is_q4, basic ratios/deltas if applicable, one lag) to data/processed/performance_features.csv.
+- Fit a driver model (ElasticNet or Ridge) and a RandomForest for accuracy; save importance tables to data/outputs/driver_ranking.csv and data/outputs/driver_importance_rf.csv.
+- Run an IsolationForest anomaly check; save flagged rows with scores to data/outputs/anomalies.csv.
+- Produce a Streamlit stub (streamlit_app.py) with KPIs, driver tables, anomalies, and Plotly/Altair charts with one-line “so what” captions.
+- Include short run instructions for Windows with local venv (no admin).
+
+Return only the final prompt, nothing else.
+```
+3) Take the generated prompt and run it in the same AI to produce the code and files.
+
 ## One-Shot Prompt (Copy/Paste) to Build From Excel → Dashboard
 Paste this as one block to Claude/ChatGPT/Gemini, then add your column names and file name where noted.
 ```
