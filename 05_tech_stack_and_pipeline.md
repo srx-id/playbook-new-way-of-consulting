@@ -37,3 +37,16 @@ Plain-language catalog of the tools already in our projects and how they fit tog
 11) **Share and iterate:** Walk through the exec page first, then drill-down tabs; capture feedback and adjust filters/labels, not the raw data.
 
 Use this as the catalog and recipe—consultants can point to the tool/step without needing to code.
+
+## Excel-to-Dashboard with GenAI Assist (Prompts for Each Step)
+1) **Raw drop storage:** “Remind me how to name and store a raw Excel file for analysis; keep it one bullet line.”  
+2) **Profiling checklist:** “Given these column headers, draft 8 quick checks (coverage, dates, duplicates, obvious gaps).”  
+3) **IDs and units:** “Rewrite these column headers to be consistent IDs/units; note any unit ambiguity to confirm.”  
+4) **Tidy layout:** “Turn this wide table into one-row-per-entity-per-period instructions; keep it to 5 bullets.”  
+5) **Missing/duplicates:** “List simple rules to keep blanks as unknown, drop exact duplicates, and log counts.”  
+6) **Features:** “Suggest 10 simple features (time flags, ratios, deltas, basic lags) for this dataset; avoid jargon.”  
+7) **Sanity split:** “Explain how to split earlier vs later periods to sanity-check stability; under 5 bullets.”  
+8) **Lightweight models:** “Suggest a plain-language plan: start with explainable regression for drivers, add tree model if needed, run anomaly detection if hunting outliers; keep under 6 bullets.”  
+9) **Save outputs:** “Remind me where to save cleaned tables and model outputs (`data/processed/`, `data/outputs/`); one bullet.”  
+10) **Dashboard build:** “Draft section labels and one-line ‘so what’ captions for these metrics (I’ll paste metric/trend/target).”  
+11) **Share/iterate:** “Write a short client walk-through order: exec page first, then drill-down tabs; note we change labels/filters, not raw data.”
