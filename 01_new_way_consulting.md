@@ -7,7 +7,7 @@
 
 ## Client Flow (Week-by-Week Ready)
 1) **Frame the question (Day 0)**  
-   - Agree on business outcome and north-star metric (e.g., OER %, theft risk score, on-time rate).  
+   - Agree on business outcome and north-star metric (e.g., gross margin %, churn rate, on-time rate, risk score).  
    - Draft the storyline: executive summary page plus three supporting pages.
 2) **Outside-in benchmark (Week 1)**  
    - Pull external signals fast: pre-trained deep learning embeddings on public text/images to map peers, risk terms, or technology mentions.  
@@ -18,12 +18,12 @@
    - Validate coverage: time window, entities, and key metrics.
 4) **Baseline, interpretable models (Week 2)**  
    - Use regularized linear models to show direction and effect size; keep features limited and business-readable.  
-   - Report errors in business units (e.g., OER points, minutes, currency).
+   - Report errors in business units (e.g., percentage points, minutes, currency).
 5) **Non-linear lift & driver ranking (Week 3)**  
    - Add gradient boosting/forests for accuracy; run permutation importance and partial dependence to explain drivers.  
    - Stabilize findings with time-aware splits (train past, test future).
 6) **Program impact (Week 3-4)**  
-   - If there is an intervention (e.g., LMM), run Difference-in-Differences or synthetic control.  
+   - If there is an intervention (e.g., pilot vs control sites), run Difference-in-Differences or synthetic control.  
    - Show uplift with confidence bands and peer controls.
 7) **Package & deploy (Week 4)**  
    - Publish the Streamlit dashboard with executive summary first, then drill-down tabs.  

@@ -14,13 +14,13 @@
 
 ## Feature Engineering in Non-Technical Terms
 - **Time features:** Month/quarter, seasonality markers, pre/post program flags.  
-- **Entity features:** Mill or vendor characteristics (region, capacity, capabilities).  
-- **Behavior features:** Ratios and deltas (on-time rate, detour ratio, idle minutes, FFB source mix).  
-- **Lagged signals:** Previous month’s metric to capture momentum without peeking into the future.  
-- **Interaction flags:** Simple business rules (e.g., night trips in red zones, plasma share above threshold).
+- **Entity features:** Site, branch, product, or partner characteristics (region, size, capabilities).  
+- **Behavior features:** Ratios and deltas (on-time rate, detour ratio, idle minutes, mix share).  
+- **Lagged signals:** Previous period’s metric to capture momentum without peeking into the future.  
+- **Interaction flags:** Simple business rules (e.g., night trips in red zones, high-risk product with a new vendor).
 
 ## Data Structures Optimized for Dashboards
-- **Tidy fact table:** One row per entity per period (e.g., mill-month, vehicle-journey).  
+- **Tidy fact table:** One row per entity per period (e.g., site-month, vehicle-journey, product-week).  
 - **Keys:** Clear IDs for entity, time, and location to join across tables.  
 - **Versioned tables:** `raw/` for intakes, `processed/` for cleaned data, `outputs/` for model results.  
 - **Ready-made aggregates:** Precompute per-period summaries so charts load fast (no waiting on big pivots).  

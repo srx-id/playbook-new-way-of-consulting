@@ -7,7 +7,7 @@
 
 ## Interpretable Baseline (Start Here for Drivers)
 - **Models:** Regularized linear or logistic (Ridge/Lasso/ElasticNet).  
-- **Use case:** Show direction and approximate effect size (e.g., which FFB source mix lifts OER, which vendor traits cut failures).  
+- **Use case:** Show direction and approximate effect size (e.g., which product mix lifts margin, which partner traits cut failure rate).  
 - **Output:** Ranked drivers with signs (↑/↓) and error in business units.
 
 ## Non-Linear Accuracy Boost
@@ -18,12 +18,12 @@
 
 ## Anomaly & Risk Detection
 - **Models:** Isolation Forest + simple rules.  
-- **Use case:** Flag journeys, vendors, or mills that look unlike their peers; blend rules for clarity.  
+- **Use case:** Flag journeys, branches, partners, assets, or customers that look unlike their peers; blend rules for clarity.  
 - **Output:** Risk scores with action bands (monitor, spot-check, investigate).
 
 ## Impact of Interventions
 - **Methods:** Difference-in-Differences, synthetic control, or double ML.  
-- **Use case:** Prove uplift from programs like LMM vs non-program peers.  
+- **Use case:** Prove uplift from any program vs control (pilot branches vs holdout, new playbook vs old).  
 - **Output:** Uplift estimate with confidence band and a plain-language verdict (“evidence of improvement” vs “not visible yet”).
 
 ## Quick Selection Cheatsheet
